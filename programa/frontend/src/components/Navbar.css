@@ -1,0 +1,350 @@
+/* Barra de navegación */
+.navbar {
+  background: linear-gradient(135deg, #0b2a5a 0%, #1a4280 100%);
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Efecto al hacer scroll */
+.navbar.scrolled {
+  background: linear-gradient(135deg, #0a2550 0%, #153870 100%);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar.scrolled .navbar-container {
+  height: 100px;
+}
+
+.navbar.scrolled .logo-img {
+  max-height: 80px;
+}
+
+.navbar-container {
+  margin: 0 auto;
+  padding: 0 40px;
+  max-width: 1400px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: height 0.3s ease;
+}
+
+/* Logo con efecto hover */
+.logo {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-img {
+  max-height: 110px;
+  width: auto;
+  display: block;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.2));
+}
+
+/* Links desktop */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* ------------ MENUS ------------- */
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%; /* debajo del padre */
+  left: 0;
+  background: linear-gradient(135deg, #0b2a5a 0%, #1a4280 100%);
+  padding: 10px 0;
+  list-style: none;
+  min-width: 180px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.submenu li {
+  padding: 8px 15px;
+}
+
+.submenu li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.submenu li a:hover {
+  background: #333;
+}
+
+.nav-item:hover .submenu {
+  display: block;
+}
+
+/* ------------ SUBSUBMENUS ------------- */
+.subsubmenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%; /* se despliega al lado derecho */
+  background: linear-gradient(135deg, #1a4280 0%, #0b2a5a 100%);
+  padding: 10px 0;
+  list-style: none;
+  min-width: 180px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1100;
+  transition: opacity 0.3s ease;
+}
+
+.subsubmenu li {
+  padding: 8px 15px;
+}
+
+.subsubmenu li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.subsubmenu li a:hover {
+  background: #222;
+}
+
+/* Mostrar subsubmenu al pasar el mouse sobre el subitem */
+.nav-subitem:hover .subsubmenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-subitem:last-child .subsubmenu {
+  left: auto;
+  right: 100%; /* lo abre hacia la izquierda si está al borde */
+}
+
+/* ------------ FIN MENUS ------------- */
+
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+/* Efecto de subrayado animado */
+.nav-links li a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f4c430, #ffd700);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.nav-links li a:hover::before {
+  width: 80%;
+}
+
+.nav-links li a:hover {
+  color: #f4c430;
+  transform: translateY(-2px);
+}
+
+.nav-links li a:active {
+  transform: translateY(0);
+}
+
+/* Botón hamburguesa mejorado */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.bar {
+  width: 28px;
+  height: 3px;
+  background: white;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+/* Animación del hamburguesa a X */
+.menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Responsive - Tablet y móvil */
+@media (max-width: 968px) {
+  .navbar-container {
+    padding: 0 30px;
+  }
+
+  .nav-links {
+    gap: 35px;
+  }
+
+  .nav-links li a {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    height: 90px;
+    padding: 0 20px;
+  }
+
+  .logo-img {
+    max-height: 70px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 90px;
+    right: -100%;
+    background: linear-gradient(180deg, #0b2a5a 0%, #1a4280 100%);
+    flex-direction: column;
+    width: 280px;
+    height: calc(100vh - 90px);
+    text-align: left;
+    padding: 40px 30px;
+    gap: 0;
+    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideIn 0.4s forwards;
+    margin-bottom: 10px;
+  }
+
+  .nav-links.active li {
+    animation: slideIn 0.4s forwards;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-links li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+    padding-left: 30px;
+  }
+
+  .nav-links li a::before {
+    display: none;
+  }
+
+  /* Overlay cuando el menú está abierto */
+  .nav-links.active::before {
+    content: '';
+    position: fixed;
+    top: 90px;
+    left: 0;
+    width: calc(100vw - 280px);
+    height: calc(100vh - 90px);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
+
+/* Animación para los items del menú móvil */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1200px) {
+  .nav-links {
+    gap: 60px;
+  }
+
+  .nav-links li a {
+    font-size: 1.15rem;
+    padding: 10px 18px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .navbar-container {
+    padding: 0 60px;
+  }
+
+  .nav-links {
+    gap: 70px;
+  }
+
+  .nav-links li a {
+    font-size: 1.2rem;
+  }
+}
