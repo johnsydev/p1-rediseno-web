@@ -32,9 +32,9 @@ export default function Principal() {
     },
     {
       id: 4,
-      titulo: "Ingeniería",
+      titulo: "Nutrición",
       imagen: "/src/assets/carrera4.jpg",
-      link: "/carreras/ingenieria"
+      link: "/carreras/nutricion"
     }
   ];
 
