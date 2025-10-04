@@ -7,18 +7,84 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const navbarRef = useRef(null);
 
+  const navItems = document.querySelectorAll('.nav-item');
+  let openSubmenu = null; // guarda el submenu actualmente abierto
+
+  navItems.forEach(item => {
+    const submenu = item.querySelector('.submenu');
+
+    item.addEventListener('mouseenter', () => {
+      // cerrar el submenu abierto anterior si no es este
+      if (openSubmenu && openSubmenu !== submenu) {
+        openSubmenu.style.opacity = '0';
+        openSubmenu.style.visibility = 'hidden';
+        openSubmenu.style.display = 'none';
+      }
+
+      // abrir este submenu
+      if (submenu) {
+        submenu.style.display = 'block';
+        submenu.style.opacity = '1';
+        submenu.style.visibility = 'visible';
+        openSubmenu = submenu;
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      if (submenu) {
+        setTimeout(() => {
+          submenu.style.opacity = '0';
+          submenu.style.visibility = 'hidden';
+          submenu.style.display = 'none';
+
+          // limpiar referencia si es el mismo submenu
+          if (openSubmenu === submenu) {
+            openSubmenu = null;
+          }
+        }, 200); // retardo pequeño para bajar lento
+      }
+    });
+  });
+
+
+  const subItems = document.querySelectorAll('.nav-subitem');
+
+  subItems.forEach(item => {
+    let timer;
+    const subsubmenu = item.querySelector('.subsubmenu');
+
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(timer);
+      if(subsubmenu){
+        subsubmenu.style.display = 'block';
+        subsubmenu.style.opacity = '1';
+        subsubmenu.style.visibility = 'visible';
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      if(subsubmenu){
+        timer = setTimeout(() => {
+          subsubmenu.style.display = 'none';
+          subsubmenu.style.opacity = '0';
+          subsubmenu.style.visibility = 'hidden';
+        }, 200); // 200ms de retardo antes de desaparecer
+      }
+    });
+  });
+
   const links = [
     { name: "Inicio", href: "/" },
     { 
       name: "Carreras", 
-      href: "/carreras",
+      href: "#",
       subLinks: [
         { name: "Administración de empresas", href: "/carreras/administracion-de-empresas" },
         { name: "Derecho", href: "/carreras/derecho", },
         { name: "Nutrición", href: "/carreras/nutricion" },
         { 
           name: "Educación", 
-          href: "/carreras/educacion",
+          href: "#",
           subSubLinks: [
             { name: "Educación para primaria", href: "/carreras/educacion-para-primaria" },
             { name: "Educación para secundaria", href: "/carreras/educacion-para-secundaria" },
@@ -28,17 +94,17 @@ const Navbar = () => {
         },
       ]
     },
-    { name: "Sedes", href: "/sedes" },
     { 
       name: "Estudiantes", 
-      href: "/estudiantes",
+      href: "#",
       subLinks: [
-        { name: "Manuales y ayuda", href: "/estudiantes/virtual" },
+        { name: "Manuales y ayuda", href: "/estudiantes/manuales" },
         { name: "Matrícula", href: "/estudiantes/matricula" },
-        { name: "Plataforma académica", href: "/estudiantes/matricula" },
+        { name: "Plataforma académica", href: "https://virtualusj.net/login/index.php" },
       ]
     },
     { name: "Admisión", href: "/admision" },
+    { name: "La U", href: "/sobreNosotros" },
     { name: "Contacto", href: "/contacto" },
   ];
 

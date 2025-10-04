@@ -1,0 +1,145 @@
+/* Contenedor de toda la página */
+.matricula {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #0b2a5a 0%, #1a4280 100%);
+}
+
+.matricula-container {
+  background: rgba(255, 255, 255, 0.212);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 350px;
+}
+
+.logo-img {
+  display: block;
+  margin: 0 auto 20px auto; /* centrado y separación abajo */
+  width: 150px; /* ajusta el tamaño */
+  height: auto;
+}
+
+.portal-title {
+  margin-bottom: 40px;
+  color: white;
+}
+
+/* ===== Inputs con iconos ===== */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: #f0f4ff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+}
+
+.input-group .input-icon {
+  font-size: 20px;
+  color: #1a4280;
+  margin-right: 10px;
+}
+
+.input-group input {
+  border: none;
+  outline: none;
+  flex: 1;
+  background: transparent;
+  font-size: 16px;
+  color: #1a4280;
+}
+
+/* Botón login */
+.btn-login {
+  background: #1a4280;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.btn-login:hover {
+  background: #0b2a5a;
+}
+
+/* Botón Microsoft */
+.btn-microsoft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;               /* espacio entre icono y texto */
+  background: #f3f3f3;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;             /* mismo ancho que los otros botones */
+  max-width: 100%;         /* no se pase del contenedor */
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  color: black;
+  text-decoration: none;    /* si es <a> quita subrayado */
+  box-sizing: border-box;   /* incluye padding dentro del ancho */
+}
+
+.btn-microsoft img {
+  width: 20px;
+  height: 20px;
+  max-width: 100%;          /* no expande el botón */
+}
+
+/* Botón horarios */
+.btn-horarios {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-horarios:hover {
+  background: #388e3c;
+}
+
+
+
+/* Mensaje Olvidaste tu contraseña */
+.forgot-password {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Botón volver a página principal en esquina */
+.btn-back {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.btn-back:hover {
+  background: white;
+  color: #1a4280;
+}

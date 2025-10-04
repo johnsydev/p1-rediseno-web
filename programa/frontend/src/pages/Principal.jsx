@@ -4,6 +4,7 @@ import "../css/Principal.css";
 
 export default function Principal() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const [activeSede, setActiveSede] = useState(null);
 
   const slides = [
     { src: "/src/assets/banner1.jpg"},
@@ -36,6 +37,17 @@ export default function Principal() {
       imagen: "/src/assets/carrera4.jpg",
       link: "/carreras/nutricion"
     }
+  ];
+
+  const sedes = [
+    { id:"liberia",     nombre:"Liberia",     tel:"2666-1940",                 x:20, y:20,  align:"left"  },
+    { id:"nicoya",      nombre:"Nicoya",      tel:"2686-6002 / 2686-6606",     x:22, y:40,  align:"left"  },
+    { id:"puntarenas",  nombre:"Puntarenas",  tel:"2664-3838 / 6037-5287",     x:30, y:62,  align:"left"  },
+    { id:"san-ramon",   nombre:"San Ramón",   tel:"2447-9000 / 2445-2322",     x:42, y:42,  align:"left"  },
+    { id:"alajuela",    nombre:"Alajuela",    tel:"4030-2748",                 x:48, y:38,  align:"center"},
+    { id:"san-carlos",  nombre:"San Carlos",  tel:"2460-4444 / 2460-2228",     x:55, y:24,  align:"center"},
+    { id:"guapiles",    nombre:"Guápiles",    tel:"2710-1544 / 2710-9075",     x:72, y:36,  align:"right" },
+    { id:"rectoria",    nombre:"Rectoría",    tel:"2248-2011",                 x:56, y:50,  align:"center"},
   ];
 
   // Detectar scroll para ajustar espaciado
@@ -102,92 +114,59 @@ export default function Principal() {
           </div>
         </section>
 
-        {/* Sección de Sedes - Timeline Horizontal */}
-        <section className="sedes-timeline">
+        <section className="sedes-section">
           <div className="sedes-container">
-            <h2 className="sedes-title">Nuestras Sedes</h2>
-            <p className="sedes-subtitle">
-              Presencia en las principales ciudades de Costa Rica
-            </p>
+            <div className="sedes-header">
+              <h2 className="sedes-title">Nuestras Sedes</h2>
+              <p className="sedes-subtitle">Presencia en las principales ciudades de Costa Rica</p>
+            </div>
 
-            <div className="timeline-wrapper">
-              <div className="timeline-line"></div>
-
-              <div className="timeline-items">
-
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-card">
-                    <h3 className="sede-nombre">PUNTARENAS</h3>
-                    <p className="sede-label">Teléfonos</p>
-                    <p className="sede-telefono">2664-3838 / 6037-5287</p>
-                  </div>
-                </div>
-
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-card">
-                    <h3 className="sede-nombre">ALAJUELA</h3>
-                    <p className="sede-label">Teléfonos</p>
-                    <p className="sede-telefono">4030-2748</p>
-                  </div>
-                </div>
-
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-card">
-                    <h3 className="sede-nombre">SAN CARLOS</h3>
-                    <p className="sede-label">Teléfonos</p>
-                    <p className="sede-telefono">2460-4444 / 2460-2228</p>
-                  </div>
-                </div>
-
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-card">
-                    <h3 className="sede-nombre">SAN RAMÓN</h3>
-                    <p className="sede-label">Teléfonos</p>
-                    <p className="sede-telefono">2447-9000 / 2445-2322</p>
-                  </div>
-                </div>
-
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-card">
-                    <h3 className="sede-nombre">LIBERIA</h3>
-                    <p className="sede-label">Teléfonos</p>
-                    <p className="sede-telefono">2666-1940</p>
-                  </div>
-                </div>
-
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-card">
-                    <h3 className="sede-nombre">GUÁPILES</h3>
-                    <p className="sede-label">Teléfonos</p>
-                    <p className="sede-telefono">2710-1544 / 2710-9075</p>
-                  </div>
-                </div>
-
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-card">
-                    <h3 className="sede-nombre">NICOYA</h3>
-                    <p className="sede-label">Teléfonos</p>
-                    <p className="sede-telefono">2686-6002 / 2686-6606</p>
-                  </div>
-                </div>
-
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-card">
-                    <h3 className="sede-nombre">RECTORÍA</h3>
-                    <p className="sede-label">Teléfonos</p>
-                    <p className="sede-telefono">2248-2011</p>
-                  </div>
-                </div>
-
-              </div>
+            <div
+              className="sedes-map"
+              style={{
+                // si tienes un SVG/PNG del mapa, deja este path:
+                // @ej: "/src/assets/mapa-cr.svg" o "/src/assets/mapa-cr.png"
+                backgroundImage: "var(--map-overlay), url('/src/assets/mapa-cr2.png')",
+              }}
+            >
+              {sedes.map((s) => {
+                const open = activeSede === s.id;
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    className="sede-location"
+                    style={{ "--x": `${s.x}%`, "--y": `${s.y}%` }}
+                    data-align={s.align}
+                    aria-expanded={open}
+                    aria-controls={`tooltip-${s.id}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveSede((prev) => (prev === s.id ? null : s.id));
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setActiveSede((prev) => (prev === s.id ? null : s.id));
+                      }
+                    }}
+                  >
+                    <span className="sede-marker" aria-hidden="true" />
+                    <div
+                      id={`tooltip-${s.id}`}
+                      className="sede-tooltip"
+                      data-open={open ? "true" : "false"}
+                      role="region"
+                      aria-label={`Información de ${s.nombre}`}
+                    >
+                      <h3 className="tooltip-ciudad">{s.nombre}</h3>
+                      <div className="tooltip-divider" />
+                      <p className="tooltip-label">Teléfonos</p>
+                      <p className="tooltip-telefono">{s.tel}</p>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </section>

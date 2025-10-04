@@ -75,11 +75,21 @@
   padding-left: 10px;
 }
 
+.logo {
+  display: flex;
+  align-items: center; /* centra verticalmente */
+  justify-content: center; /* opcional si quieres centrar horizontalmente dentro del contenedor del logo */
+  padding-left: 10px; /* puedes mantener o reducir */
+  height: 100%; /* que ocupe toda la altura del navbar-container */
+}
+
+
 .logo:hover {
   transform: scale(1.05);
 }
 
 .logo-img {
+  padding: 18px 0 0;
   max-height: 80px;
   width: auto;
   display: block;
@@ -149,7 +159,7 @@
 .submenu {
   display: none;
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 5px);
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, 
@@ -181,12 +191,15 @@
   border-bottom: 8px solid rgba(26, 66, 128, 0.95);
 }
 
-.nav-item:hover .submenu {
+/* Por esta regla más robusta */
+.nav-item:hover .submenu,
+.nav-item:focus-within .submenu {
   display: block;
   opacity: 1;
   visibility: visible;
   animation: fadeInDown 0.3s ease;
 }
+
 
 .nav-subitem {
   position: relative;
@@ -274,7 +287,9 @@
   border-right: 8px solid rgba(11, 42, 90, 0.97);
 }
 
-.nav-subitem:hover .subsubmenu {
+/* Subsubmenu visible mientras el padre tenga hover o focus */
+.nav-subitem:hover .subsubmenu,
+.nav-subitem:focus-within .subsubmenu {
   display: block;
   opacity: 1;
   visibility: visible;
@@ -513,15 +528,18 @@
   }
 
   .subsubmenu {
-    position: static;
-    margin: 6px 0 6px 15px;
+    position: relative; /* relativo al subitem */
+    top: auto;          /* quitar top fijo */
+    left: auto;         /* ya no se desplaza a la derecha */
+    transform: none;    /* quitar translateY(-50%) */
+    margin: 4px 0 0 15px; /* separarlo un poco del subitem */
     padding: 6px 0;
     background: rgba(0, 0, 0, 0.2);
     min-width: auto;
   }
 
   .subsubmenu::before {
-    display: none;
+    display: none; /* quitar la flecha lateral en móvil */
   }
 
   .subsubmenu li a {
