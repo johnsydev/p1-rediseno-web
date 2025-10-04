@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
 import logoU from "../assets/logo-usanjose2.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const navbarRef = useRef(null);
 
   const links = [
     { name: "Inicio", href: "/" },
@@ -40,8 +42,27 @@ const Navbar = () => {
     { name: "Contacto", href: "/contacto" },
   ];
 
+  // Manejar scroll
+  const handleScroll = () => {
+    const isScrolled = window.scrollY > 50;
+    setScrolled(isScrolled);
+  };
+
+  useEffect(() => {
+    // Agregar listener de scroll
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="navbar">
+    <nav 
+      ref={navbarRef}
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+    >
       <div className="navbar-container">
         {/* Logo */}
         <a href="/" className="logo">
