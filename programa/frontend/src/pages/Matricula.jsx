@@ -1,5 +1,5 @@
 import React from "react";
-import { FaUser, FaLock } from "react-icons/fa";
+import { FaUser, FaLock, FaArrowLeft } from "react-icons/fa";
 import "../css/Matricula.css";
 import { Link } from "react-router-dom";
 
@@ -11,14 +11,17 @@ function Matricula() {
 
           {/* Botón volver a principal en esquina */}
           <Link to="/" className="btn-back">
-            Volver al Inicio
+            <FaArrowLeft /> <span className="back-text">Volver al Inicio</span>
           </Link>
 
-          <img 
-            src="/src/assets/logo-usanjose2.png"
-            className="logo-img2"
-            alt="Logo Universidad San José"
-          />
+          <a href="/" className="logo2">
+            <img 
+              src="/src/assets/logo-usanjose2.png"
+              className="logo-img2"
+              alt="Logo Universidad San José"
+            />
+          </a>
+          
           <h2 className="portal-title">Portal de estudiantes</h2>
 
           {/* Usuario */}

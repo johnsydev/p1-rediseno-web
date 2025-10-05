@@ -360,7 +360,6 @@
   border-radius: 10px;
   transition: all 0.3s ease;
   z-index: 1001;
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .menu-toggle:hover {
@@ -492,8 +491,7 @@
 
   .nav-links li a:hover {
     background: rgba(255, 255, 255, 0.12);
-    transform: translateX(8px);
-    padding-left: 25px;
+    padding-left: 15px;
   }
 
   .nav-links li a::before {
@@ -553,6 +551,7 @@
   }
 
   /* Overlay cuando el menú está abierto */
+  /*
   .nav-links.active::before {
     content: '';
     position: fixed;
@@ -564,6 +563,7 @@
     z-index: -1;
     backdrop-filter: blur(2px);
   }
+  */
 }
 
 /* Animación para los items del menú móvil */

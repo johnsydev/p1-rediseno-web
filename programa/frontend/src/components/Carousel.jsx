@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import "./carousel.css";
+import "./Carousel.css";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 export default function Carousel({ slides = [], autoPlay = true, interval = 5000 }) {
   const [index, setIndex] = useState(0);
@@ -37,13 +38,13 @@ export default function Carousel({ slides = [], autoPlay = true, interval = 5000
         className="carousel-btn prev"
         onClick={() => { clearInterval(timerRef.current); prev(); }}
         aria-label="Anterior"
-      >‹</button>
+      ><FaChevronLeft /></button>
 
       <button
         className="carousel-btn next"
         onClick={() => { clearInterval(timerRef.current); next(); }}
         aria-label="Siguiente"
-      >›</button>
+      ><FaChevronRight /></button>
 
       <div className="carousel-dots">
         {slides.map((_, i) => (

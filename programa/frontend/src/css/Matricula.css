@@ -9,11 +9,12 @@
 
 .matricula-container {
   background: rgba(255, 255, 255, 0.212);
-  padding: 10px 40px 20px;
+  padding: 10px 60px 20px;
   border-radius: 12px;
   box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
   text-align: center;
   width: 100%;
+  max-width: 700px;
   height: auto;
 }
 
@@ -142,9 +143,29 @@
   text-decoration: none;
   font-size: 0.9rem;
   transition: 0.3s;
+  display: flex;
 }
 
 .btn-back:hover {
   background: #f4c430;
   color: #1a4280;
+}
+
+.back-text {
+  margin-left: 6px; /* espacio entre flecha y texto */
+}
+
+/* En pantallas pequeñas solo mostrar la flecha */
+@media (max-width: 768px) {
+  .btn-back::after,
+  .back-text {
+    display: none; /* Si tenés un span con texto, ocultarlo */
+  }
+
+  .btn-back {
+    left: 5px;
+    padding: 6px 10px; /* menos padding */
+    font-size: 1.2rem;
+    justify-content: center;
+  }
 }

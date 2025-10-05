@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Carousel from "../components/Carousel";
 import "../css/Principal.css";
+import { FaChevronRight } from "react-icons/fa";
 
 export default function Principal() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
@@ -72,7 +73,7 @@ export default function Principal() {
                       <p className="cflip-back-text">
                         Conocé más sobre {c.titulo}: plan de estudios, modalidad y proyección profesional.
                       </p>
-                      <span className="cflip-cta">Ingresar →</span>
+                      <span className="cflip-cta">Ingresar <FaChevronRight className="cflip-icon" /></span>
                     </div>
                   </div>
                 </a>
