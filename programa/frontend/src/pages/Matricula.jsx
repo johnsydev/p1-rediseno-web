@@ -16,7 +16,7 @@ function Matricula() {
 
           <img 
             src="/src/assets/logo-usanjose2.png"
-            className="logo-img"
+            className="logo-img2"
             alt="Logo Universidad San José"
           />
           <h2 className="portal-title">Portal de estudiantes</h2>

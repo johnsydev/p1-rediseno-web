@@ -5,57 +5,34 @@ import "../css/Principal.css";
 export default function Principal() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [activeSede, setActiveSede] = useState(null);
+  const [hoverSede, setHoverSede] = useState(null);
 
   const slides = [
-    { src: "/src/assets/banner1.jpg"},
-    { src: "/src/assets/banner4.png"},
-    { src: "/src/assets/banner3.png"},
+    { src: "/src/assets/banner1.jpg" },
+    { src: "/src/assets/banner4.png" },
+    { src: "/src/assets/banner3.png" },
   ];
 
   const carreras = [
-    {
-      id: 1,
-      titulo: "Administración",
-      imagen: "/src/assets/carrera1.jpg",
-      link: "/carreras/administracion"
-    },
-    {
-      id: 2,
-      titulo: "Derecho",
-      imagen: "/src/assets/carrera2.jpg",
-      link: "/carreras/derecho"
-    },
-    {
-      id: 3,
-      titulo: "Educación",
-      imagen: "/src/assets/carrera3.jpg",
-      link: "/carreras/educacion"
-    },
-    {
-      id: 4,
-      titulo: "Nutrición",
-      imagen: "/src/assets/carrera4.jpg",
-      link: "/carreras/nutricion"
-    }
+    { id: 1, titulo: "Administración", imagen: "/src/assets/carrera1.jpg", link: "/carreras/administracion" },
+    { id: 2, titulo: "Derecho", imagen: "/src/assets/carrera2.jpg", link: "/carreras/derecho" },
+    { id: 3, titulo: "Educación", imagen: "/src/assets/carrera3.jpg", link: "/carreras/educacion" },
+    { id: 4, titulo: "Nutrición", imagen: "/src/assets/carrera4.jpg", link: "/carreras/nutricion" }
   ];
 
   const sedes = [
-    { id:"liberia",     nombre:"Liberia",     tel:"2666-1940",                 x:20, y:20,  align:"left"  },
-    { id:"nicoya",      nombre:"Nicoya",      tel:"2686-6002 / 2686-6606",     x:22, y:40,  align:"left"  },
-    { id:"puntarenas",  nombre:"Puntarenas",  tel:"2664-3838 / 6037-5287",     x:30, y:62,  align:"left"  },
-    { id:"san-ramon",   nombre:"San Ramón",   tel:"2447-9000 / 2445-2322",     x:42, y:42,  align:"left"  },
-    { id:"alajuela",    nombre:"Alajuela",    tel:"4030-2748",                 x:48, y:38,  align:"center"},
-    { id:"san-carlos",  nombre:"San Carlos",  tel:"2460-4444 / 2460-2228",     x:55, y:24,  align:"center"},
-    { id:"guapiles",    nombre:"Guápiles",    tel:"2710-1544 / 2710-9075",     x:72, y:36,  align:"right" },
-    { id:"rectoria",    nombre:"Rectoría",    tel:"2248-2011",                 x:56, y:50,  align:"center"},
+    { id:"liberia",     nombre:"Liberia",     tel:"2666-1940",                 x:27,   y:18,  align:"left"   },
+    { id:"nicoya",      nombre:"Nicoya",      tel:"2686-6002 / 2686-6606",     x:26,   y:34,  align:"left"   },
+    { id:"puntarenas",  nombre:"Puntarenas",  tel:"2664-3838 / 6037-5287",     x:40.5, y:39,  align:"left"   },
+    { id:"san-ramon",   nombre:"San Ramón",   tel:"2447-9000 / 2445-2322",     x:44,   y:35,  align:"left"   },
+    { id:"alajuela",    nombre:"Alajuela",    tel:"4030-2748",                 x:48,   y:38,  align:"center" },
+    { id:"san-carlos",  nombre:"San Carlos",  tel:"2460-4444 / 2460-2228",     x:47,   y:27,  align:"center" },
+    { id:"guapiles",    nombre:"Guápiles",    tel:"2710-1544 / 2710-9075",     x:56,   y:33,  align:"right"  },
+    { id:"sanJose",    nombre:"San José",    tel:"2248-2011",                 x:52,   y:39,  align:"center" },
   ];
-
-  // Detectar scroll para ajustar espaciado
+  // Detectar scroll
   useEffect(() => {
-    const handleScroll = () => {
-      setNavbarScrolled(window.scrollY > 20);
-    };
-
+    const handleScroll = () => setNavbarScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -63,47 +40,37 @@ export default function Principal() {
   return (
     <>
       <div className="fondo-header">
-        <img 
-          src="/src/assets/bannerheader.jpg"
-          className="fondo-header-img"
-        />
+        <img src="/src/assets/bannerheader.jpg" className="fondo-header-img" />
       </div>
+
       <div className={`principal ${navbarScrolled ? "navbar-scrolled" : ""}`}>
-        {/* Sección del carrusel */}
+        
+        {/* Carrusel */}
         <section className="full-bleed">
           <Carousel slides={slides} autoPlay interval={4000} />
         </section>
 
-        {/* Sección de Carreras Destacadas */}
+        {/* Carreras */}
         <section className="carreras-destacadas">
           <div className="carreras-container">
             <h2 className="carreras-title">Nuestras Carreras</h2>
             <p className="carreras-subtitle">
               Descubre programas académicos de excelencia que impulsarán tu futuro profesional
             </p>
-
             <div className="carreras-grid">
-              {carreras.map((carrera) => (
-                <a
-                  key={carrera.id}
-                  className="cflip-card"
-                  href={carrera.link}
-                  aria-label={`Ir a ${carrera.titulo}`}
-                >
+              {carreras.map((c) => (
+                <a key={c.id} className="cflip-card" href={c.link} aria-label={`Ir a ${c.titulo}`}>
                   <div className="cflip-inner">
-                    {/* Frente */}
                     <div className="cflip-face cflip-front">
-                      <img src={carrera.imagen} alt={carrera.titulo} className="cflip-img" />
+                      <img src={c.imagen} alt={c.titulo} className="cflip-img" />
                       <div className="cflip-bar">
-                        <h3 className="cflip-title">{carrera.titulo}</h3>
+                        <h3 className="cflip-title">{c.titulo}</h3>
                       </div>
                     </div>
-
-                    {/* Dorso (fondo sólido + texto) */}
                     <div className="cflip-face cflip-back">
-                      <h3 className="cflip-back-title">{carrera.titulo}</h3>
+                      <h3 className="cflip-back-title">{c.titulo}</h3>
                       <p className="cflip-back-text">
-                        Conocé más sobre {carrera.titulo}: plan de estudios, modalidad y proyección profesional.
+                        Conocé más sobre {c.titulo}: plan de estudios, modalidad y proyección profesional.
                       </p>
                       <span className="cflip-cta">Ingresar →</span>
                     </div>
@@ -114,6 +81,7 @@ export default function Principal() {
           </div>
         </section>
 
+        {/* Sedes */}
         <section className="sedes-section">
           <div className="sedes-container">
             <div className="sedes-header">
@@ -124,32 +92,41 @@ export default function Principal() {
             <div
               className="sedes-map"
               style={{
-                // si tienes un SVG/PNG del mapa, deja este path:
-                // @ej: "/src/assets/mapa-cr.svg" o "/src/assets/mapa-cr.png"
                 backgroundImage: "var(--map-overlay), url('/src/assets/mapa-cr2.png')",
               }}
             >
+              {/* Leyenda */}
+              <ul className="sedes-legend">
+                <li className="legend-title">Sedes</li>
+                {sedes.map((s) => (
+                  <li
+                    key={s.id}
+                    data-target={s.id}
+                    onMouseEnter={() => setHoverSede(s.id)}
+                    onMouseLeave={() => setHoverSede(null)}
+                    onClick={() => setActiveSede((prev) => (prev === s.id ? null : s.id))}
+                  >
+                    {s.nombre}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Pines */}
               {sedes.map((s) => {
-                const open = activeSede === s.id;
+                const open = activeSede
+                  ? activeSede === s.id
+                  : hoverSede === s.id;
+
                 return (
                   <button
                     key={s.id}
                     type="button"
-                    className="sede-location"
+                    className={`sede-location ${open ? "is-highlight" : ""}`}
                     style={{ "--x": `${s.x}%`, "--y": `${s.y}%` }}
+                    data-id={s.id}
                     data-align={s.align}
                     aria-expanded={open}
                     aria-controls={`tooltip-${s.id}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveSede((prev) => (prev === s.id ? null : s.id));
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        setActiveSede((prev) => (prev === s.id ? null : s.id));
-                      }
-                    }}
                   >
                     <span className="sede-marker" aria-hidden="true" />
                     <div
@@ -171,33 +148,22 @@ export default function Principal() {
           </div>
         </section>
 
-        {/* Sección Sobre Nosotros con Video */}
+        {/* Sobre Nosotros */}
         <section className="sobre-nosotros">
           <div className="sobre-container">
             <h2 className="sobre-title">Sobre Nosotros</h2>
             <p className="sobre-subtitle">
               Conoce nuestra historia, valores y compromiso con la excelencia educativa
             </p>
-
             <div className="sobre-content">
               <div className="sobre-video-column">
                 <div className="sobre-video">
-                  <video 
-                    controls
-                    loop
-                    autoPlay
-                    muted
-                    className="video-local"
-                  >
+                  <video controls loop autoPlay muted className="video-local">
                     <source src="/src/assets/video.mp4" type="video/mp4" />
                   </video>
                 </div>
-                
-                <a href="/sobreNosotros" className="sobre-btn">
-                  Conocer Más
-                </a>
+                <a href="/sobreNosotros" className="sobre-btn">Conocer Más</a>
               </div>
-
               <div className="sobre-text">
                 <h3 className="sobre-heading">El Motor de Tus Sueños</h3>
                 <p className="sobre-description">
@@ -213,26 +179,16 @@ export default function Principal() {
                   de la herencia del proceso educativo producido dentro de las instalaciones del 
                   colegio académico.
                 </p>
-                
                 <div className="sobre-stats">
-                  <div className="stat-item">
-                    <div className="stat-number">32,000+</div>
-                    <div className="stat-label">Estudiantes</div>
-                  </div>
-                  <div className="stat-item">
-                    <div className="stat-number">4+</div>
-                    <div className="stat-label">Carreras</div>
-                  </div>
-                  <div className="stat-item">
-                    <div className="stat-number">7+</div>
-                    <div className="stat-label">Sedes</div>
-                  </div>
+                  <div className="stat-item"><div className="stat-number">32,000+</div><div className="stat-label">Estudiantes</div></div>
+                  <div className="stat-item"><div className="stat-number">4+</div><div className="stat-label">Carreras</div></div>
+                  <div className="stat-item"><div className="stat-number">7+</div><div className="stat-label">Sedes</div></div>
                 </div>
               </div>
             </div>
           </div>
         </section>
       </div>
-    </> 
+    </>
   );
 }

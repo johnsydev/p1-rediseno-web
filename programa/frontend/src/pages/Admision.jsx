@@ -3,26 +3,31 @@ import "../css/Admision.css";
 
 export default function Admision() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const beneficios = [
     {
       id: 1,
       titulo: "Biblioteca física y virtual",
+      descripcion: "Todas nuestras sedes, cuentan con una biblioteca debidamente equipada y actualizada.\n\nNuestra plataforma en línea, permite tener al alcance más de 1.800 publicaciones, con la facilidad de observar el contenido en línea o descargar las publicaciones en dispositivos móviles y de escritorio.",
       imagen: "/src/assets/servicio1.png"
     },
     {
       id: 2,
       titulo: "Trámites de graduación, matrícula y financiamiento",
+      descripcion: "• Certificaciones\n– Trabajo comunal.\n– Convalidaciones.\n– Materias aprobadas.\n– Incorporación a los colegios profesionales.\n\n• Constancias\n– Materias aprobadas.\n– Estudiante activo.\n– Trámites CONAPE y FONABE.\n– Para CCSS.",
       imagen: "/src/assets/servicio2.png"
     },
     {
       id: 3,
       titulo: "Modernos laboratorios de Química",
+      descripcion: "Tanto nuestra sede Central en Ciudad Quesada, como la sede de Liberia, cuentan con la facilidad de modernos laboratorios de química y alimentos, para el desarrollo de las lecciones correspondientes a la Facultad de Ciencias de la Salud, en las carreras de Nutrición y Tecnología de Alimentos.",
       imagen: "/src/assets/servicio3.png"
     },
     {
       id: 4,
       titulo: "Laboratorios de Cómputo de última generación",
+      descripcion: "Nuestras sedes cuentan con modernos laboratorios de cómputo, para el ejercicio de las lecciones que requieran investigación y ejecución de conocimientos en internet o prácticas virtuales, con máquinas de alta tecnología, con pantallas táctiles y con el software de actualización más reciente.",
       imagen: "/src/assets/servicio4.png"
     }
   ];
@@ -31,11 +36,13 @@ export default function Admision() {
     {
       id: 1,
       titulo: "CONAPE",
+      descripcion: "CONAPE, es un servicio de apoyo económico, destinado a financiar estudios de educación superior y técnica, con criterio de solidaridad social, que se caracteriza por otorgar préstamos a la tasa de interés preferencial. El beneficio más importante, es que el inicio del pago del préstamo se hace una vez que concluya los estudios; de esta manera, se le da crédito a un estudiante y se le cobra a un profesional.\n\nLa Institución le brinda una variedad de beneficios en los préstamos que  ofrece, para que inicie, continúe o finalice una carrera, siendo una de las mejores opciones del mercado, con una baja tasa de interés; se le otorga el préstamo cuando estudia y lo paga cuando haya concluído los estudios.",
       imagen: "/src/assets/financiamiento1.png"
     },
     {
       id: 2,
       titulo: "Letra de cambio",
+      descripcion: "Letra de cambio: Se cancela el monto de la matrícula, más el 25% de las materias por matricular; el 75% del monto restante,  se divide entre tres tractos mensuales. Se aplica para bachillerato y licenciatura.\n\nLetra de cambio para Maestría y Postgrado: Si  se desea cancelar  la totalidad de la carrera en un solo pago de contado, no se incluye en el monto a cancelar de las matrículas de la carrera.\nSe necesita:\n– Original y fotocopia de la cédula de identidad.\n– Fotocopia de recibo de luz, agua o teléfono de su residencia.\n– Original y fotocopia de la orden patronal al día, con un salario reportado mayor a ¢200.000 y con reporte de salario anterior y trasanterior o certificación de ingresos emitida por un Contador Público Autorizado.\nSi el estudiante es menor de edad o no posee alguno de los requisitos anteriores, debe presentarse con un fiador que aporte los documentos requeridos.",
       imagen: "/src/assets/financiamiento2.png"
     }
   ];
@@ -146,8 +153,6 @@ export default function Admision() {
           </ul>
         </section>
 
-
-
         <section className="banner-beneficios">
           <div className="overlay">
             <h1 className="banner-title">¿Por qué elegir la U San José?</h1>
@@ -157,53 +162,117 @@ export default function Admision() {
         <section className="beneficios-container">
           <div className="beneficios-grid">
             {beneficios.map((beneficio) => (
-              <div key={beneficio.id} className="beneficio-card">
-                <div className="beneficio-image-wrapper">
-                  <img 
-                    src={beneficio.imagen} 
-                    alt={beneficio.titulo}
-                    className="beneficio-image"
-                  />
-                  <div className="beneficio-overlay"></div>
+              <div key={beneficio.id} className="bflip-card">
+                <div className="bflip-inner">
+                  {/* Frente */}
+                  <div className="bflip-face bflip-front">
+                    <img 
+                      src={beneficio.imagen} 
+                      alt={beneficio.titulo}
+                      className="bflip-img"
+                    />
+                    <div className="bflip-bar">
+                      <h3 className="bflip-title">{beneficio.titulo}</h3>
+                    </div>
+                  </div>
+
+                  {/* Dorso */}
+                <div className="bflip-face bflip-back">
+                  <div className="bflip-back-text">
+                    {beneficio.descripcion && (
+                      <ul>
+                        {beneficio.descripcion.split("\n").map((line, index) => {
+                          const trimmed = line.trim();
+                          if (trimmed.startsWith("•")) {
+                            return <li key={index} className="bullet-main">{trimmed.slice(1).trim()}</li>;
+                          } else if (trimmed.startsWith("–")) {
+                            return <li key={index} className="bullet-sub">{trimmed.slice(1).trim()}</li>;
+                          } else {
+                            return <li key={index} className="bullet-other">{trimmed}</li>;
+                          }
+                        })}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-                
-                <div className="beneficio-content">
-                  <h3 className="beneficio-titulo">{beneficio.titulo}</h3>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
+
         <section className="financiamiento-container">
           <h2 className="financiamiento-title">Opciones de Financiamiento</h2>
           <p className="financiamiento-text">
-            En la Universidad de San José, entendemos que la educación es una inversión importante. Por eso, ofrecemos diversas opciones de financiamiento para ayudarte a alcanzar tus metas académicas sin preocupaciones financieras.
+            En la Universidad de San José, entendemos que la educación es una inversión importante. 
+            Por eso, ofrecemos diversas opciones de financiamiento para ayudarte a alcanzar tus metas 
+            académicas sin preocupaciones financieras.
           </p>
           
-          <section className="beneficios-container">
-            <div className="beneficios-grid">
-              {financiamientos.map((beneficio) => (
-                <div key={beneficio.id} className="beneficio-card">
-                  <div className="beneficio-image-wrapper">
-                    <img 
-                      src={beneficio.imagen} 
-                      alt={beneficio.titulo}
-                      className="beneficio-image"
-                    />
-                    <div className="beneficio-overlay"></div>
+          <section className="financiamiento-grid">
+            {financiamientos.map((item) => (
+              <div 
+                key={item.id} 
+                className="fcard"
+                onClick={() => setSelectedItem(item)} // abre modal
+              >
+                <div className="finner">
+                  {/* Frente */}
+                  <div className="fface ffront">
+                    <div className="fimg-wrapper">
+                      <img 
+                        src={item.imagen} 
+                        alt={item.titulo}
+                        className="fimg"
+                      />
+                      <div className="foverlay"></div>
+                      <div className="fflip-bar">
+                        <h3 className="ftitle">{item.titulo}</h3>
+                      </div>
+                    </div>
                   </div>
-                  
-                  <div className="beneficio-content">
-                    <h3 className="beneficio-titulo">{beneficio.titulo}</h3>
+
+                  {/* Dorso (información corta + botón "Más info") */}
+                  <div className="fface fback">
+                    <h3 className="fback-title">{item.titulo}</h3>
+                    {item.descripcion && (
+                      <p className="fback-text">
+                        {item.descripcion.length > 100 
+                          ? item.descripcion.substring(0, 161) + "..." 
+                          : item.descripcion
+                        }
+                      </p>
+                    )}
+                    <button 
+                      className="btn-mas-info"
+                      onClick={(e) => {
+                        e.stopPropagation(); // evita que se abra otro modal
+                        setSelectedItem(item);
+                      }}
+                    >
+                      Más información
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
-          
-        </section>
+              </div>
+            ))}
 
+            {/* Modal */}
+            {selectedItem && (
+              <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
+                <div className="modal" onClick={(e) => e.stopPropagation()}>
+                  <h2>{selectedItem.titulo}</h2>
+                  <p style={{ whiteSpace: "pre-line" }}>{selectedItem.descripcion}</p>
+                  <button className="btn-cerrar" onClick={() => setSelectedItem(null)}>
+                    Cerrar
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
+
+        </section>
       </div>
     </>
   );

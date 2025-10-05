@@ -21,7 +21,7 @@ export default function Footer() {
           <div className="footer-column">
             <h4>Ubicación</h4>
             <p>Costa Rica</p>
-            <p>Alajuela, Quesada</p>
+            <p>Alajuela, San Carlos</p>
           </div>
           <div className="footer-column">
             <h4>Contacto</h4>
@@ -38,13 +38,13 @@ export default function Footer() {
         <div className="footer-social">
           <h4>Síguenos</h4>
           <div className="social-icons">
-            <a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="social-btn">
+            <a href="https://www.facebook.com/usanjosecr" target="_blank" rel="noreferrer" className="social-btn">
               <FaFacebookF />
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noreferrer" className="social-btn">
+            <a href="https://www.instagram.com/usanjoseoficial/" target="_blank" rel="noreferrer" className="social-btn">
               <FaInstagram />
             </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" className="social-btn">
+            <a href="https://www.linkedin.com/school/universidad-de-san-jos%C3%A9/" target="_blank" rel="noreferrer" className="social-btn">
               <FaLinkedinIn />
             </a>
           </div>

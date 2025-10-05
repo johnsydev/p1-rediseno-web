@@ -314,7 +314,7 @@
 /* === MAPA INTERACTIVO (mejorado) === */
 
 .sedes-section {
-  padding: 70px 0;
+  padding: 40px 0;
   background: linear-gradient(135deg, #0b2a5a 0%, #1a4280 100%);
   position: relative;
   overflow: hidden;
@@ -322,11 +322,12 @@
 
 .sedes-container { max-width: 1300px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 1; }
 .sedes-header { text-align: center; margin-bottom: 40px; }
-.sedes-title { font-size: 2.6rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.sedes-title { font-size: 2.6rem; font-weight: 700; color: #fff; margin-bottom: 8px; margin-top: 0px; }
 .sedes-subtitle { font-size: 1.1rem; color: rgba(255,255,255,.9); }
 
 /* Fondo del mapa (usa tu PNG/SVG). Aspect ratio para que no “salte”. */
 .sedes-map {
+  background-color: #0a2147;
   --map-overlay: radial-gradient(circle at 15% 25%, rgba(212,168,67,.10) 0%, transparent 45%),
                   radial-gradient(circle at 80% 75%, rgba(212,168,67,.08) 0%, transparent 45%);
   position: relative;
@@ -339,6 +340,7 @@
   background-size: contain, contain; /* overlay, mapa */
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0,0,0,.25) inset, 0 12px 28px rgba(0,0,0,.25);
+  z-index: 10;
 }
 
 /* Punto/tooltip como elementos “absolutos” con coords en % */
@@ -346,12 +348,14 @@
   position: absolute;
   left: var(--x);
   top: var(--y);
+  z-index: 1; 
   transform: translate(-50%, -100%); /* ancla por encima del punto */
   background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
   outline: none;
+  isolation: isolate;
 }
 
 .sede-location:focus-visible .sede-marker {
@@ -369,6 +373,7 @@
   display: grid; place-items: center;
   transition: transform .25s ease, box-shadow .25s ease;
   position: relative;
+  z-index: 2;
 }
 .sede-marker::before {
   content: "";
@@ -396,7 +401,7 @@
   opacity: 0; visibility: hidden;
   transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
   text-align: center;
-  z-index: 5;
+  z-index: 3;
 }
 .sede-tooltip::after {
   content: "";
@@ -410,12 +415,17 @@
 .sede-location[data-align="right"] .sede-tooltip { transform-origin: right bottom; }
 
 /* Mostrar en hover (desktop) */
-@media (hover: hover) and (pointer: fine) {
-  .sede-location:hover .sede-tooltip {
-    opacity: 1; visibility: visible;
-    transform: translate(-50%, 0);
+@media (hover:hover) and (pointer:fine) {
+  /* Solo muestra por hover si NO hay sede activa */
+  .sedes-map:not(.has-active) .sede-location:hover .sede-tooltip {
+    opacity: 1; visibility: visible; transform: translate(-50%, 0);
     transition-delay: 0s;
   }
+  .sedes-map:not(.has-active) .sede-location:hover { z-index: 999; }
+}
+
+.sedes-map.has-active .sede-location:hover .sede-tooltip {
+  opacity: 0; visibility: hidden; transform: translate(-50%, 8px);
 }
 
 /* Mostrar en click/tap (mobile y también desktop con click) */
@@ -440,6 +450,77 @@
 .tooltip-telefono {
   margin: 0; font-size: .98rem; color: #4a4a4a; line-height: 1.5; font-weight: 600;
 }
+
+.sede-location:hover,
+.sede-location:focus-visible,
+.sede-location[data-open="true"] {
+  z-index: 999;               /* encima de los otros pins */
+}
+
+.sedes-legend {
+  position: absolute;
+  left: 16px; bottom: 16px;
+  margin: 0;
+  padding: 12px 14px;
+  list-style: none;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  z-index: 1;                  /* por encima de los pines */
+  opacity: 0.85;
+}
+
+/* Título dentro de la misma lista (primer <li>) */
+.sedes-legend .legend-title {
+  font-weight: 800;
+  font-size: .95rem;
+  letter-spacing: .3px;
+  color: #fff;
+  margin-bottom: 8px;
+  pointer-events: none;           /* no interactúa */
+}
+
+/* Items clicables */
+.sedes-legend li:not(.legend-title) {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: rgba(255,255,255,.96);
+  font-size: .9rem;
+  cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+}
+
+/* Puntito dorado */
+.sedes-legend li:not(.legend-title)::before {
+  content: "";
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #d4a843;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.7) inset;
+  flex-shrink: 0;
+}
+
+.sedes-legend li:not(.legend-title):hover {
+  background: rgba(212,168,67,.18);
+  transform: translateX(2px);
+}
+
+/* Asegura que el pin resaltado se vea arriba y con “pop” */
+.sede-location { position: absolute; z-index: 1; isolation: isolate; }
+.sede-location .sede-marker { position: relative; z-index: 2; }
+.sede-location .sede-tooltip { position: absolute; z-index: 3; }
+
+.sede-location.is-highlight { z-index: 999; }
+.sede-location.is-highlight .sede-marker {
+  transform: rotate(-45deg) scale(1.12);
+  box-shadow: 0 10px 26px rgba(0,0,0,.45);
+}
+
+@media (max-width: 640px) {
+  .sedes-legend { width: 60%; left: 10px; bottom: 10px; padding: 10px 12px; }
+  .sedes-legend li:not(.legend-title) { font-size: .85rem; }
+}
+
 
 /* Responsive */
 @media (max-width: 968px) {
@@ -501,7 +582,7 @@
 .sobre-video-column {
   display: flex;
   flex-direction: column;
-  gap: 90px; /* Ajusta este valor para aumentar o disminuir el espacio entre el video y el botón */
+  gap: 50px; /* Ajusta este valor para aumentar o disminuir el espacio entre el video y el botón */
 }
 
 .sobre-video {
@@ -563,10 +644,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  margin: 40px 0;
-  padding: 30px 0;
+  margin: 0px 0;
+  padding: 20px 0;
   border-top: 2px solid #f0f0f0;
   border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 20px;
 }
 
 .stat-item {
@@ -1079,13 +1161,12 @@
   margin-top: 5px;
   font-weight: 700;
   font-size: 0.95rem;
-  color: #d4a843;
+  color: #0b2a5a;
   padding: 10px 25px;
-  border: 2px solid #d4a843;
   border-radius: 8px;
   display: inline-block;
   transition: all 0.3s ease;
-  background: transparent;
+  background: #d4a843;
 }
 
 .cflip-cta:hover {

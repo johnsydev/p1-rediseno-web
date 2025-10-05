@@ -9,19 +9,24 @@
 
 .matricula-container {
   background: rgba(255, 255, 255, 0.212);
-  padding: 40px;
+  padding: 10px 40px 20px;
   border-radius: 12px;
   box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
   text-align: center;
-  width: 350px;
-}
-
-.logo-img {
-  display: block;
-  margin: 0 auto 20px auto; /* centrado y separación abajo */
-  width: 150px; /* ajusta el tamaño */
+  width: 100%;
   height: auto;
 }
+
+.logo-img2 {
+  display: block;
+  margin: 0 auto 15px auto;
+  max-height: 140px !important;
+}
+
+.logo-img2:hover {
+  transform: scale(1.05); /* pequeño efecto al pasar el mouse */
+}
+
 
 .portal-title {
   margin-bottom: 40px;
@@ -140,6 +145,6 @@
 }
 
 .btn-back:hover {
-  background: white;
+  background: #f4c430;
   color: #1a4280;
 }

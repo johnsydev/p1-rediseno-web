@@ -177,3 +177,139 @@
   .tf-title{ font-size:1.18rem; }
   .tf-dot{ width:54px; height:54px; }
 }
+
+/* ====== CONTENEDORES FLUIDOS ====== */
+.about-text-container {
+  width: min(92vw, 780px);                  /* antes: max-width fijo */
+  padding: clamp(24px, 4vw, 48px) clamp(20px, 5vw, 50px);
+  border-radius: 16px;
+}
+
+.identity-container,
+.history-lite-container {
+  /* max-width fluido y padding lateral responsivo */
+  max-width: clamp(960px, 82vw, 1100px);
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+}
+
+/* ====== TIPOGRAFÍA FLUIDA ====== */
+.about-title {
+  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  margin-bottom: clamp(14px, 2.5vw, 25px);
+}
+
+.about-description {
+  font-size: clamp(.95rem, 1.2vw, 1.05rem);
+  line-height: 1.7;
+}
+
+.identity-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+}
+
+.identity-intro,
+.history-lite-intro {
+  font-size: clamp(.95rem, 1.2vw, 1.05rem);
+}
+
+/* ====== GRID PRINCIPIOS (mejor intermedio) ====== */
+@media (max-width: 1120px) and (min-width: 880px) {
+  .principle-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
+}
+
+/* Ya tienes 1 columna a 968px, lo mantenemos */
+@media (max-width: 968px) {
+  .principle-grid { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* ====== BANNER ALTURA FLUIDA ====== */
+.about-banner {
+  /* altura más elástica por viewport */
+  min-height: clamp(380px, 52vw, 520px);
+  padding: clamp(80px, 10vw, 140px) 20px clamp(36px, 6vw, 60px);
+}
+
+/* ====== HISTORY CARDS: mejor escala en intermedio ====== */
+@media (max-width: 1200px) and (min-width: 969px) {
+  .history-cards { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+/* ====== TIMELINE: suaviza antes del corte móvil ====== */
+@media (max-width: 920px) and (min-width: 769px) {
+  .tf-card { width: calc(50% - 80px); padding: 22px 24px; }
+  .tf-dot { width: 70px; height: 70px; }
+}
+
+/* ====== MICROAJUSTES GLOBALES ====== */
+.history-lite-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.hc-text { font-size: clamp(.94rem, 1.1vw, .98rem); }
+
+.identity-section {
+  padding-top: clamp(32px, 6vw, 60px);
+  padding-bottom: clamp(32px, 6vw, 60px);
+}
+
+.history-lite {
+  padding-top: clamp(36px, 6vw, 60px);
+  padding-bottom: clamp(44px, 7vw, 70px);
+}
+
+/* 1) Nunca permitir desbordes horizontales */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 2) Cálculos de ancho correctos (padding no suma ancho extra) */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* 3) Medios fluidos: que imágenes y videos no se salgan */
+img, video, svg, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 4) Contenedores de la página: evita que algo 'empuje' el viewport */
+.infou-page,
+.about-banner,
+.identity-container,
+.history-lite-container {
+  max-width: 100%;
+  overflow-x: clip;         /* evita crear scroll lateral */
+}
+
+/* 5) Grid de historia: que se rompa de forma segura sin desbordar */
+.history-cards {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* 6) Timeline: evita empujes por posiciones absolutas en intermedios */
+@media (max-width: 920px) {
+  .tf-line { left: 24px; }
+  .tf-dot  { left: 24px; }
+  .tf-card { width: calc(100% - 84px); margin-left: 84px; }
+}
+
+/* 7) Banner: asegura que sombras/paddings no generen ancho extra */
+.about-banner {
+  overflow-x: clip;
+}
+
+/* ====== Ajuste de posición del cuadro en móvil ====== */
+@media (max-width: 768px) {
+  .about-text-container {
+    margin-top: 40px;     /* empuja el cuadro hacia abajo */
+  }
+}
+
+@media (max-width: 480px) {
+  .about-text-container {
+    margin-top: 55px;     /* un poco más de espacio en pantallas pequeñas */
+  }
+}

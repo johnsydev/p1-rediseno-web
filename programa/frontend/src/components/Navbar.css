@@ -83,13 +83,11 @@
   height: 100%; /* que ocupe toda la altura del navbar-container */
 }
 
-
 .logo:hover {
   transform: scale(1.05);
 }
 
 .logo-img {
-  padding: 18px 0 0;
   max-height: 80px;
   width: auto;
   display: block;
@@ -412,7 +410,9 @@
   }
 }
 
-@media (max-width: 768px) {
+
+/* MOVILES */
+@media (max-width: 800px) {
   .navbar {
     padding: 10px 15px;
   }
