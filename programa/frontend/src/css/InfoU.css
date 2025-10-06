@@ -268,6 +268,10 @@ html, body {
 /* 2) Cálculos de ancho correctos (padding no suma ancho extra) */
 *, *::before, *::after { box-sizing: border-box; }
 
+.about-banner { box-sizing: content-box;}
+.about-text-container { box-sizing: border-box; }
+
+
 /* 3) Medios fluidos: que imágenes y videos no se salgan */
 img, video, svg, canvas {
   max-width: 100%;

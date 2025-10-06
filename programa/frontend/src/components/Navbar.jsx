@@ -101,6 +101,9 @@ const Navbar = () => {
         { name: "Manuales y ayuda", href: "/estudiantes/manuales" },
         { name: "Matrícula", href: "/estudiantes/matricula" },
         { name: "Plataforma académica", href: "https://virtualusj.net/login/index.php" },
+        { name: "Ver horarios", href: "/estudiantes/horarios" },
+        { name: "Tarifas Conesup", href: "/tarifas-conesup-usj" },
+        { name: "App Acamsys", href: "https://play.google.com/store/apps/details?id=com.acamsys.student_app.usj" },
       ]
     },
     { name: "Admisión", href: "/admision" },

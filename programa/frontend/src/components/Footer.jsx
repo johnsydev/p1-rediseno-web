@@ -53,6 +53,14 @@ export default function Footer() {
 
       {/* Bottom */}
       <div className="footer-bottom">
+        <a 
+          href="https://grupogach.com/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="footer-btn"
+        >
+          Grupo GACH
+        </a>
         <p>© 2025 Universidad San José – Todos los derechos reservados</p>
       </div>
     </footer>
