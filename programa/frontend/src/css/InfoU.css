@@ -317,3 +317,71 @@ img, video, svg, canvas {
     margin-top: 55px;     /* un poco más de espacio en pantallas pequeñas */
   }
 }
+
+/* ---- Banner perfectamente centrado horizontalmente ---- */
+.about-banner {
+  display: flex;
+  justify-content: center;   /* ✅ centra el contenido (el cuadro) en eje X */
+  align-items: center;       /* centra verticalmente */
+  overflow: visible;
+  padding: clamp(80px, 10vw, 140px) 20px clamp(40px, 8vw, 80px);
+  box-sizing: border-box;
+}
+
+/* ---- Cuadro blanco sin vw (centrado de forma natural) ---- */
+.about-text-container {
+  width: 100%;
+  max-width: 750px;         /* límite en desktop */
+  margin: 0 auto;           /* ✅ centrado horizontal */
+  padding: clamp(20px, 4vw, 40px) clamp(18px, 5vw, 48px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---- En móviles pequeños ---- */
+@media (max-width: 600px) {
+  .about-banner {
+    align-items: flex-start;       /* el cuadro baja un poco */
+    padding-top: 100px;
+  }
+
+  .about-text-container {
+    max-width: 95%;                /* ✅ se adapta al ancho visible */
+    border-radius: 14px;
+  }
+}
+
+/* Seguridad: no scroll horizontal */
+/* Altura de la barra de navegación fija (ajústala si es otra) */
+:root { --headerH: 110px; }
+
+/* DESKTOP: forzamos altura “pantalla” y centrado real */
+@media (min-width: 1024px) {
+  .infou-page .about-banner {
+    box-sizing: border-box;
+    height: 100svh !important;
+    min-height: unset !important;                      /* ignora min-heights previos */
+    padding-top: 160px !important;
+    padding-bottom: 120px !important;
+    padding-left: 24px; 
+    padding-right: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Si añadimos un spacer ::after para móvil, lo apagamos en desktop */
+  .infou-page .about-banner::after { content: none !important; }
+}
+
+
+
+
+

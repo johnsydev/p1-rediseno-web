@@ -108,7 +108,7 @@ const Navbar = () => {
     },
     { name: "Admisión", href: "/admision" },
     { name: "La U", href: "/sobreNosotros" },
-    { name: "Contacto", href: "/contacto" },
+    { name: "Contacto", href: "https://form.jotform.com/221304208251037" },
   ];
 
   // Manejar scroll
