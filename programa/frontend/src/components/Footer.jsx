@@ -6,12 +6,10 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-top">
-        {/* Logo */}
         <div className="footer-logo">
           <img src={logo} alt="Logo" className="footer-img" />
         </div>
 
-        {/* Info */}
         <div className="footer-info">
           <div className="footer-column">
             <h4>Teléfonos</h4>
@@ -34,7 +32,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Redes */}
         <div className="footer-social">
           <h4>Síguenos</h4>
           <div className="social-icons">
@@ -51,7 +48,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom */}
       <div className="footer-bottom">
         <a 
           href="https://grupogach.com/" 

@@ -62,7 +62,7 @@ export default function Admision() {
         <img 
           src="/src/assets/bannerheader.jpg"
           className="fondo-header-img"
-          alt="Banner Header"
+          alt="Fondo Header"
         />
       </div>
 
@@ -215,10 +215,9 @@ export default function Admision() {
               <div 
                 key={item.id} 
                 className="fcard"
-                onClick={() => setSelectedItem(item)} // abre modal
+                onClick={() => setSelectedItem(item)}
               >
                 <div className="finner">
-                  {/* Frente */}
                   <div className="fface ffront">
                     <div className="fimg-wrapper">
                       <img 
@@ -233,7 +232,6 @@ export default function Admision() {
                     </div>
                   </div>
 
-                  {/* Dorso (información corta + botón "Más info") */}
                   <div className="fface fback">
                     <h3 className="fback-title">{item.titulo}</h3>
                     {item.descripcion && (
@@ -247,7 +245,7 @@ export default function Admision() {
                     <button 
                       className="btn-mas-info"
                       onClick={(e) => {
-                        e.stopPropagation(); // evita que se abra otro modal
+                        e.stopPropagation();
                         setSelectedItem(item);
                       }}
                     >
@@ -258,7 +256,6 @@ export default function Admision() {
               </div>
             ))}
 
-            {/* Modal */}
             {selectedItem && (
               <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
                 <div className="modal" onClick={(e) => e.stopPropagation()}>

@@ -31,7 +31,7 @@ export default function Principal() {
     { id:"guapiles",    nombre:"Guápiles",    tel:"2710-1544 / 2710-9075",     x:56,   y:33,  align:"right"  },
     { id:"sanJose",    nombre:"San José",    tel:"2248-2011",                 x:52,   y:39,  align:"center" },
   ];
-  // Detectar scroll
+
   useEffect(() => {
     const handleScroll = () => setNavbarScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -41,17 +41,15 @@ export default function Principal() {
   return (
     <>
       <div className="fondo-header">
-        <img src="/src/assets/bannerheader.jpg" className="fondo-header-img" />
+        <img src="/src/assets/bannerheader.jpg" className="fondo-header-img" alt="Fondo Header" />
       </div>
 
       <div className={`principal ${navbarScrolled ? "navbar-scrolled" : ""}`}>
         
-        {/* Carrusel */}
         <section className="full-bleed">
           <Carousel slides={slides} autoPlay interval={4000} />
         </section>
 
-        {/* Carreras */}
         <section className="carreras-destacadas">
           <div className="carreras-container">
             <h2 className="carreras-title">Nuestras Carreras</h2>
@@ -82,7 +80,6 @@ export default function Principal() {
           </div>
         </section>
 
-        {/* Sedes */}
         <section className="sedes-section">
           <div className="sedes-container">
             <div className="sedes-header">
@@ -96,7 +93,6 @@ export default function Principal() {
                 backgroundImage: "var(--map-overlay), url('/src/assets/mapa-cr2.png')",
               }}
             >
-              {/* Leyenda */}
               <ul className="sedes-legend">
                 <li className="legend-title">Sedes</li>
                 {sedes.map((s) => (
@@ -112,7 +108,6 @@ export default function Principal() {
                 ))}
               </ul>
 
-              {/* Pines */}
               {sedes.map((s) => {
                 const open = activeSede
                   ? activeSede === s.id
@@ -149,7 +144,6 @@ export default function Principal() {
           </div>
         </section>
 
-        {/* Sobre Nosotros */}
         <section className="sobre-nosotros">
           <div className="sobre-container">
             <h2 className="sobre-title">Sobre Nosotros</h2>

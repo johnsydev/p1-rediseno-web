@@ -28,7 +28,7 @@ function Matricula() {
       return;
     }
 
-    setErrorGlobal(""); // limpia si no hay errores
+    setErrorGlobal("");
     alert("Formulario válido 🚀");
   };
 
@@ -88,7 +88,6 @@ function Matricula() {
             </button>
           </form>
 
-          {/* Login Microsoft */}
           <form
             action="https://login.microsoftonline.com/601abcfe-55c6-417b-9e01-57754c5ea156/oauth2/v2.0/authorize"
             method="GET"
@@ -106,7 +105,7 @@ function Matricula() {
               type="hidden"
             />
             <button type="submit" className="btn-microsoft">
-              <img src="/src/assets/logo-microsoft.png" alt="Microsoft" />
+              <img src="/src/assets/logo-microsoft.png" alt="Logo Microsoft" />
               Iniciar sesión con Microsoft
             </button>
           </form>

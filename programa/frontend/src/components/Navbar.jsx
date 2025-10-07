@@ -8,20 +8,18 @@ const Navbar = () => {
   const navbarRef = useRef(null);
 
   const navItems = document.querySelectorAll('.nav-item');
-  let openSubmenu = null; // guarda el submenu actualmente abierto
+  let openSubmenu = null;
 
   navItems.forEach(item => {
     const submenu = item.querySelector('.submenu');
 
     item.addEventListener('mouseenter', () => {
-      // cerrar el submenu abierto anterior si no es este
       if (openSubmenu && openSubmenu !== submenu) {
         openSubmenu.style.opacity = '0';
         openSubmenu.style.visibility = 'hidden';
         openSubmenu.style.display = 'none';
       }
 
-      // abrir este submenu
       if (submenu) {
         submenu.style.display = 'block';
         submenu.style.opacity = '1';
@@ -37,11 +35,10 @@ const Navbar = () => {
           submenu.style.visibility = 'hidden';
           submenu.style.display = 'none';
 
-          // limpiar referencia si es el mismo submenu
           if (openSubmenu === submenu) {
             openSubmenu = null;
           }
-        }, 200); // retardo pequeño para bajar lento
+        }, 200);
       }
     });
   });
@@ -68,7 +65,7 @@ const Navbar = () => {
           subsubmenu.style.display = 'none';
           subsubmenu.style.opacity = '0';
           subsubmenu.style.visibility = 'hidden';
-        }, 200); // 200ms de retardo antes de desaparecer
+        }, 200);
       }
     });
   });
@@ -111,17 +108,14 @@ const Navbar = () => {
     { name: "Contacto", href: "https://form.jotform.com/221304208251037" },
   ];
 
-  // Manejar scroll
   const handleScroll = () => {
     const isScrolled = window.scrollY > 50;
     setScrolled(isScrolled);
   };
 
   useEffect(() => {
-    // Agregar listener de scroll
     window.addEventListener('scroll', handleScroll);
 
-    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -133,18 +127,15 @@ const Navbar = () => {
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
     >
       <div className="navbar-container">
-        {/* Logo */}
         <a href="/" className="logo">
           <img src={logoU} alt="Logo Universidad de San José" className="logo-img" />
         </a>
 
-        {/* Links desktop */}
         <ul className={`nav-links ${open ? "active" : ""}`}>
           {links.map((link) => (
             <li key={link.name} className="nav-item">
               <a href={link.href}>{link.name}</a>
 
-              {/* Submenú */}
               {link.subLinks && (
                 <ul className="submenu">
                   {link.subLinks.map((sub) => (
@@ -167,7 +158,6 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Botón hamburguesa */}
         <div className="menu-toggle" onClick={() => setOpen(!open)}>
           <div className={`bar ${open ? "open" : ""}`}></div>
           <div className={`bar ${open ? "open" : ""}`}></div>

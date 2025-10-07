@@ -9,7 +9,7 @@ import Footer from "./components/Footer.jsx";
 
 export default function App() {
   const location = useLocation();
-  const hideNavbarRoutes = ["/estudiantes/matricula"]; // rutas donde no queremos navbar
+  const hideNavbarRoutes = ["/estudiantes/matricula"];
   const hideNavbar = hideNavbarRoutes.includes(location.pathname);
 
   return (

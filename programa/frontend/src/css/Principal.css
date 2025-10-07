@@ -4,7 +4,7 @@
   overflow: hidden; 
   position: fixed; 
   top: 0; left: 0; 
-  z-index: 0; /* ponerlo arriba de -1 */ 
+  z-index: 0;
 } 
   
 .fondo-header-img { 
@@ -19,25 +19,23 @@
 } 
     
 .principal { 
-  background: transparent; /* deja ver la imagen */ 
+  background: transparent;
   min-height: 100vh; 
   transition: padding-top 0.3s ease; 
-  position: relative; /* necesario para stacking */ 
-  z-index: 1; /* contenido sobre la imagen */ 
+  position: relative;
+  z-index: 1;
 }
 
 .principal.navbar-scrolled {
-  padding-top: 0px; /* si querés que se reduzca al hacer scroll */
+  padding-top: 0px; 
 }
 
-/* Hero section */
 .hero {
   padding: 40px 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-/* Full bleed para el carrusel */
 .full-bleed {
   position: relative;
   width: 100%;
@@ -47,14 +45,12 @@
   box-sizing: border-box;
 }
 
-/* Container genérico para secciones */
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
 }
 
-/* Secciones */
 .section {
   padding: 80px 0;
 }
@@ -77,7 +73,6 @@
   margin-right: auto;
 }
 
-/* Grid responsive para cards */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -85,7 +80,6 @@
   margin-top: 40px;
 }
 
-/* Cards genéricas */
 .card {
   background: white;
   border-radius: 12px;
@@ -133,7 +127,6 @@
   margin-right: auto;
 }
 
-/* Grid de carreras - FIX TAMAÑO DEFINITIVO */
 .carreras-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -142,13 +135,11 @@
   align-items: start;
 }
 
-/* Forzar que cada item del grid respete el tamaño */
 .carreras-grid > * {
   height: 400px;
   max-height: 400px;
 }
 
-/* Responsive - Tablets */
 @media (max-width: 1200px) {
   .carreras-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -156,7 +147,7 @@
   }
   
   .carreras-grid > * {
-    height: auto; /* que se adapte al contenido */
+    height: auto;
     max-height: none;
   }
 }
@@ -173,20 +164,19 @@
   }
 }
 
-/* Responsive - Móviles */
+/* Responsive */
 @media (max-width: 640px) {
   .carreras-grid {
-    grid-template-columns: 1fr; /* una columna */
+    grid-template-columns: 1fr;
     gap: 20px;
   }
   
   .carreras-grid > * {
-    height: auto; /* se adapta al contenido */
+    height: auto;
     max-height: none;
   }
 }
 
-/* Card individual */
 .carrera-card {
   background: white;
   border-radius: 16px;
@@ -201,7 +191,6 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
-/* Contenedor de imagen */
 .carrera-image-wrapper {
   position: relative;
   width: 100%;
@@ -220,7 +209,6 @@
   transform: scale(1.1);
 }
 
-/* Overlay sobre la imagen */
 .carrera-overlay {
   position: absolute;
   top: 0;
@@ -243,7 +231,6 @@
   );
 }
 
-/* Contenido del card */
 .carrera-content {
   padding: 30px 25px;
   text-align: center;
@@ -261,7 +248,6 @@
   color: #1a4280;
 }
 
-/* Botón VER */
 .carrera-btn {
   display: inline-block;
   padding: 12px 40px;
@@ -287,7 +273,7 @@
   transform: translateY(0);
 }
 
-/* === MAPA INTERACTIVO (mejorado) === */
+/* === MAPA INTERACTIVO === */
 
 .sedes-section {
   padding: 40px 0;
@@ -301,7 +287,6 @@
 .sedes-title { font-size: 2.6rem; font-weight: 700; color: #fff; margin-bottom: 8px; margin-top: 0px; }
 .sedes-subtitle { font-size: 1.1rem; color: rgba(255,255,255,.9); }
 
-/* Fondo del mapa (usa tu PNG/SVG). Aspect ratio para que no “salte”. */
 .sedes-map {
   background-color: #0a2147;
   --map-overlay: radial-gradient(circle at 15% 25%, rgba(212,168,67,.10) 0%, transparent 45%),
@@ -313,19 +298,18 @@
   aspect-ratio: 16/9;
   background-repeat: no-repeat, no-repeat;
   background-position: center center;
-  background-size: contain, contain; /* overlay, mapa */
+  background-size: contain, contain;
   border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0,0,0,.25) inset, 0 12px 28px rgba(0,0,0,.25);
   z-index: 10;
 }
 
-/* Punto/tooltip como elementos “absolutos” con coords en % */
 .sede-location {
   position: absolute;
   left: var(--x);
   top: var(--y);
   z-index: 1; 
-  transform: translate(-50%, -100%); /* ancla por encima del punto */
+  transform: translate(-50%, -100%); 
   background: transparent;
   border: 0;
   padding: 0;
@@ -338,7 +322,6 @@
   box-shadow: 0 0 0 4px rgba(255,255,255,.85), 0 0 0 8px rgba(212,168,67,.45);
 }
 
-/* Marcador tipo “pin” */
 .sede-marker {
   width: 52px; height: 52px;
   background: linear-gradient(135deg, #d4a843 0%, #f0c86a 100%);
@@ -362,7 +345,6 @@
   box-shadow: 0 10px 26px rgba(0,0,0,.45);
 }
 
-/* Tooltip limpio y espacioso */
 .sede-tooltip {
   position: absolute;
   left: 50%;
@@ -386,13 +368,10 @@
   border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid #fff;
 }
 
-/* Alineaciones para evitar que se salga por los lados */
 .sede-location[data-align="left"]  .sede-tooltip { transform-origin: left bottom; }
 .sede-location[data-align="right"] .sede-tooltip { transform-origin: right bottom; }
 
-/* Mostrar en hover (desktop) */
 @media (hover:hover) and (pointer:fine) {
-  /* Solo muestra por hover si NO hay sede activa */
   .sedes-map:not(.has-active) .sede-location:hover .sede-tooltip {
     opacity: 1; visibility: visible; transform: translate(-50%, 0);
     transition-delay: 0s;
@@ -404,14 +383,12 @@
   opacity: 0; visibility: hidden; transform: translate(-50%, 8px);
 }
 
-/* Mostrar en click/tap (mobile y también desktop con click) */
 .sede-tooltip[data-open="true"] {
   opacity: 1; visibility: visible;
   transform: translate(-50%, 0);
   transition-delay: 0s;
 }
 
-/* Tipografía del tooltip */
 .tooltip-ciudad {
   margin: 0 0 10px 0;
   font-size: 1.05rem; font-weight: 800; color: #0b2a5a;
@@ -430,7 +407,7 @@
 .sede-location:hover,
 .sede-location:focus-visible,
 .sede-location[data-open="true"] {
-  z-index: 999;               /* encima de los otros pins */
+  z-index: 999;
 }
 
 .sedes-legend {
@@ -441,21 +418,19 @@
   list-style: none;
   border-radius: 12px;
   backdrop-filter: blur(6px);
-  z-index: 1;                  /* por encima de los pines */
+  z-index: 1; 
   opacity: 0.85;
 }
 
-/* Título dentro de la misma lista (primer <li>) */
 .sedes-legend .legend-title {
   font-weight: 800;
   font-size: .95rem;
   letter-spacing: .3px;
   color: #fff;
   margin-bottom: 8px;
-  pointer-events: none;           /* no interactúa */
+  pointer-events: none;
 }
 
-/* Items clicables */
 .sedes-legend li:not(.legend-title) {
   display: flex; align-items: center; gap: 8px;
   padding: 6px 4px;
@@ -467,7 +442,6 @@
   transition: background .18s ease, transform .18s ease;
 }
 
-/* Puntito dorado */
 .sedes-legend li:not(.legend-title)::before {
   content: "";
   width: 10px; height: 10px; border-radius: 50%;
@@ -481,7 +455,6 @@
   transform: translateX(2px);
 }
 
-/* Asegura que el pin resaltado se vea arriba y con “pop” */
 .sede-location { position: absolute; z-index: 1; isolation: isolate; }
 .sede-location .sede-marker { position: relative; z-index: 2; }
 .sede-location .sede-tooltip { position: absolute; z-index: 3; }
@@ -883,7 +856,6 @@
   }
 }
 
-/* Móviles pequeños */
 @media (max-width: 480px) {
   .principal {
     padding-top: 0px;
@@ -918,14 +890,12 @@
   }
 }
 
-/* Ajuste cuando el navbar hace scroll (más pequeño) */
 @media (min-width: 769px) {
   .principal.navbar-scrolled {
     padding-top: 0px;
   }
 }
 
-/* Utilidades responsive */
 .hide-mobile {
   display: block;
 }
@@ -944,7 +914,6 @@
   }
 }
 
-/* Espaciado responsive */
 .spacing-sm {
   margin: 20px 0;
 }
@@ -971,7 +940,6 @@
   }
 }
 
-/* Texto responsive */
 .text-responsive {
   font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
@@ -980,7 +948,6 @@
   font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-/* Mejora de performance en móviles */
 @media (max-width: 768px) {
   * {
     -webkit-tap-highlight-color: transparent;
@@ -992,9 +959,8 @@
   }
 }
 
-/* ====== CARDS FLIP 3D - FIXED DEFINITIVO ====== */
+/* ====== CARDS FLIP 3D ====== */
 
-/* Contenedor principal con perspectiva */
 .cflip-card {
   display: block;
   text-decoration: none;
@@ -1009,7 +975,6 @@
   position: relative;
 }
 
-/* Inner con efecto 3D - TAMAÑO FIJO */
 .cflip-inner {
   position: absolute;
   top: 0;
@@ -1023,7 +988,6 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
 }
 
-/* Flip en desktop */
 @media (hover: hover) and (pointer: fine) {
   .cflip-card:hover .cflip-inner {
     transform: rotateY(180deg);
@@ -1031,7 +995,6 @@
   }
 }
 
-/* Caras de la card */
 .cflip-face {
   position: absolute;
   top: 0;
@@ -1045,7 +1008,6 @@
   overflow: hidden;
 }
 
-/* FRENTE - Imagen con título */
 .cflip-front {
   transform: rotateY(0deg) translateZ(2px);
   z-index: 2;
@@ -1080,7 +1042,7 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* DORSO - Fondo sólido con texto mejorado */
+/* DORSO */
 .cflip-back {
   transform: rotateY(180deg) translateZ(2px);
   background: linear-gradient(135deg, #0b2a5a 0%, #1a4280 100%);
@@ -1094,7 +1056,6 @@
   position: relative;
 }
 
-/* Decoración sutil en el fondo */
 .cflip-back::before {
   content: '';
   position: absolute;
@@ -1160,7 +1121,7 @@
   flex-shrink: 0;
 }
 
-/* Responsive - Tablets */
+/* Responsive */
 @media (max-width: 968px) {
   .cflip-card {
     height: 360px;
@@ -1193,7 +1154,7 @@
   }
 }
 
-/* Responsive - Móviles */
+/* Responsive */
 @media (max-width: 640px) {
   .cflip-card {
     height: 320px;
@@ -1227,7 +1188,6 @@
     padding: 10px 24px;
   }
 
-  /* En móvil, flip con tap */
   .cflip-card:active .cflip-inner {
     transform: rotateY(180deg);
   }
@@ -1237,39 +1197,38 @@
   }
 }
 
-/* Sobre Nosotros - Responsive móvil */
+/* Sobre Nosotros - Responsive */
 @media (max-width: 640px) {
   .sobre-content {
     display: grid;
-    grid-template-columns: 1fr; /* Una columna, todo apilado */
-    gap: 30px; /* Espacio entre filas */
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
   .sobre-video-column {
-    gap: 40px; /* Ajusta el espacio entre video y botón si querés */
+    gap: 40px;
   }
 
   .sobre-text {
-    padding: 0; /* Opcional, para que quede alineado */
+    padding: 0;
   }
 }
 
-/* Para tablets y móviles */
 @media (max-width: 768px) {
   .fondo-header {
-    height: 100px; /* más pequeña que 130px */
+    height: 100px;
   }
 
   .fondo-header-img {
-    height: 100%; /* sigue ocupando toda la altura del contenedor */
-    transform: scale(1.05); /* opcional, para que no se vea cortada */
+    height: 100%;
+    transform: scale(1.05);
   }
 }
 
 /* Para móviles muy pequeños */
 @media (max-width: 480px) {
   .fondo-header {
-    height: 80px; /* aún más pequeña */
+    height: 80px;
   }
 
   .fondo-header-img {

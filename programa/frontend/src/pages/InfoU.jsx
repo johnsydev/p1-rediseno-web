@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../css/InfoU.css";
-import bannerImage from "../assets/fotoU.png"; // Cambia por tu imagen
+import bannerImage from "../assets/fotoU.png";
 
 function InfoU() {
   const [showFullHistory, setShowFullHistory] = useState(false);
@@ -26,7 +26,6 @@ function InfoU() {
         </div>
       </section>
 
-      {/* IDENTIDAD: Visión + Misión (contenedores refinados) */}
       <section className="identity-section" aria-labelledby="identidad-titulo">
         <div className="identity-container">
           <h2 id="identidad-titulo" className="identity-title">Nuestra Identidad</h2>
@@ -35,7 +34,6 @@ function InfoU() {
           </p>
 
           <div className="principle-grid">
-            {/* Visión */}
             <article className="principle-card principle-v2" aria-labelledby="vision-titulo">
               <header className="principle-header v2">
                 <span className="principle-badge navy" aria-hidden="true">
@@ -52,7 +50,6 @@ function InfoU() {
               </p>
             </article>
 
-            {/* Misión */}
             <article className="principle-card principle-v2" aria-labelledby="mision-titulo">
               <header className="principle-header v2">
                 <span className="principle-badge gold" aria-hidden="true">
@@ -73,7 +70,6 @@ function InfoU() {
         </div>
       </section>
 
-      {/* HISTORIA: resumen + timeline completo colapsable */}
       <section className="history-lite" aria-labelledby="historia-titulo">
         <div className="history-lite-container">
           <h2 id="historia-titulo" className="history-lite-title">Nuestra Historia</h2>
@@ -81,7 +77,6 @@ function InfoU() {
             Un vistazo ágil a nuestro recorrido. Si querés, podés desplegar la historia completa.
           </p>
 
-          {/* Cards resumen */}
           <div className="history-cards">
             <article className="history-card">
               <div className="hc-year">1990</div>
@@ -113,7 +108,6 @@ function InfoU() {
             </article>
           </div>
 
-          {/* Botón toggle */}
           <div className="history-toggle">
             <button
               className="history-btn"
@@ -126,7 +120,6 @@ function InfoU() {
             </button>
           </div>
 
-          {/* Timeline completo */}
           <div id="timeline-completo" className={`timeline-full ${showFullHistory ? "open" : ""}`}>
             <div className="tf-line" aria-hidden="true"></div>
 
